@@ -1,0 +1,67 @@
+﻿<telerik:RadWindow x:Class="WpfApp1.Reposts.Factor.Moein"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+       Header="معین حساب" Height="400" Width="400" FlowDirection="RightToLeft" FontFamily="/WpfApp1;component/Content/Fonts/#IRANSans" WindowStartupLocation="CenterOwner" 
+           ResizeMode="NoResize"     >
+    <telerik:RadBusyIndicator BusyContent="در حال بارگذاری" Name="busycontent" >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="65"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <WrapPanel>
+                    <Button IsDefault="True" Background="{x:Null}" BorderBrush="{x:Null}" Name="btnok" Click="btnok_Click">
+                        <Image Source="/WpfApp1;component/Content/Icons/Crud/ok.png"/>
+                    </Button>
+                </WrapPanel>
+                <WrapPanel Grid.Column="1" HorizontalAlignment="Right">
+                    <Button IsCancel="True" Background="{x:Null}" BorderBrush="{x:Null}" Name="btnCancel" Click="btnCancel_Click">
+                        <Image Source="/WpfApp1;component/Content/Icons/Crud/cancel--v1.png"/>
+                    </Button>
+                </WrapPanel>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Margin="3">
+                    <RadioButton VerticalContentAlignment="Center" Height="30" GroupName="Os" Content="نمایش کل حساب" Name="rdall" IsChecked="True" Checked="rdall_Checked" />
+                    <RadioButton VerticalContentAlignment="Center" Height="30" GroupName="Os" Content="نمایش حساب در تاریخ" Name="rdindate" Checked="rdindate_Checked"/>
+                    <RadioButton VerticalContentAlignment="Center" Height="30" GroupName="Os" Content="نمایش حساب مابین تاریخ های" Name="rdbetwendate" Checked="rdbetwendate_Checked"/>
+
+                </StackPanel>
+                <Grid Margin="3" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <telerik:RadDatePicker IsEnabled="{Binding ElementName=rdindate,Path=IsChecked}" Grid.Row="1" TodayButtonVisibility="Visible" TodayButtonContent="امروز" DateTimeWatermarkContent="انتخاب تاریخ" ErrorTooltipContent="لطفا تاریخ را در فرمت صحیح وارد نمایید" Width="178" HorizontalAlignment="Left" Name="txtdate" Margin="0 3 0 3"></telerik:RadDatePicker>
+                    <WrapPanel Grid.Row="2" >
+                        <telerik:RadDatePicker IsEnabled="{Binding ElementName=rdbetwendate,Path=IsChecked}" TodayButtonVisibility="Visible" TodayButtonContent="امروز" DateTimeWatermarkContent="انتخاب تاریخ" ErrorTooltipContent="لطفا تاریخ را در فرمت صحیح وارد نمایید"  Height="25" Width="80" Name="txtstartdate"></telerik:RadDatePicker>
+                        <Label>تا</Label>
+                        <telerik:RadDatePicker IsEnabled="{Binding ElementName=rdbetwendate,Path=IsChecked}" TodayButtonVisibility="Visible" TodayButtonContent="امروز" DateTimeWatermarkContent="انتخاب تاریخ" ErrorTooltipContent="لطفا تاریخ را در فرمت صحیح وارد نمایید" Height="25" Width="80" Name="txtenddate"></telerik:RadDatePicker>
+                    </WrapPanel>
+
+                </Grid>
+
+            </Grid>
+            <telerik:RadGridView ShowSearchPanel="True" AutoGenerateColumns="False" IsReadOnly="True" x:Name="grdclients">
+                <telerik:RadGridView.Columns>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding id}" />
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Title}" Width="*"/>
+                    <telerik:GridViewDataColumn DataMemberBinding="{Binding Discription}"/>
+
+                </telerik:RadGridView.Columns>
+            </telerik:RadGridView>
+        </Grid>
+    </telerik:RadBusyIndicator>
+</telerik:RadWindow>

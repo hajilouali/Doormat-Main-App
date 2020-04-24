@@ -1,0 +1,35 @@
+﻿<telerik:RadWindow x:Class="WpfApp1.Pages.Factor.Discount"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        Header="تخفیف" Height="150" Width="300"
+         FlowDirection="RightToLeft" FontFamily="/WpfApp1;component/Content/Fonts/#IRANSans" WindowStartupLocation="CenterOwner"  ResizeMode="NoResize"     >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">درصد تخفیف:</Label>
+        <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">مبلغ تخفیف:</Label>
+
+        <TextBox PreviewTextInput="DescountPersent_PreviewTextInput" Grid.Row="0" Grid.Column="1" Margin="5" Name="DescountPersent" VerticalContentAlignment="Center" Text="{Binding DescountPersents,StringFormat=n0}" TextChanged="DescountPersent_TextChanged"></TextBox>
+        <TextBox PreviewTextInput="DescountPersent_PreviewTextInput" Grid.Row="1" Grid.Column="1" Margin="5" Name="Descount" VerticalContentAlignment="Center" Text="{Binding Descounts,StringFormat=n0}" TextChanged="Descount_TextChanged"></TextBox>
+        <Grid Grid.Row="2" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                
+            </Grid.ColumnDefinitions>
+            <WrapPanel Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Button Background="{x:Null}" BorderBrush="{x:Null}" Name="Ok" Click="Ok_Click" IsDefault="True">
+                    <Image Source="/WpfApp1;component/Content/Icons/Crud/ok.png" ></Image>
+                </Button>
+            </WrapPanel>
+            
+        </Grid>
+    </Grid>
+</telerik:RadWindow>

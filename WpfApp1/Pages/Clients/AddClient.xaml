@@ -1,0 +1,82 @@
+﻿<telerik:RadWindow x:Class="WpfApp1.Pages.Clients.AddClient"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        Header="مشتری" Height="300" Width="350" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" FontFamily="/WpfApp1;component/Content/Fonts/#IRANSans" FlowDirection="RightToLeft" telerik:StyleManager.Theme="Transparent" Loaded="RadWindow_Loaded">
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <telerik:RadTabControl Grid.Row="0" telerik:StyleManager.Theme="Summer" >
+            <telerik:RadTabItem Header="اطلاعات تماس" telerik:StyleManager.Theme="VisualStudio2013" >
+                <Grid Margin="7">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                        
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Right">نام / نام شرکت:</Label>
+                    <TextBox Grid.Row="0" Grid.Column="1" Margin="2" Name="txtName"></TextBox>
+                    <Label Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Right">شماره تماس:</Label>
+                    <TextBox Grid.Row="1" Grid.Column="1" Margin="2" Name="txtPhone"></TextBox>
+                    <Label Grid.Row="2" Grid.Column="0" HorizontalContentAlignment="Right">نام رابطه:</Label>
+                    <TextBox Grid.Row="2" Grid.Column="1" Margin="2" Name="txtClientPartner"></TextBox>
+                    <Label Grid.Row="3" Grid.Column="0" HorizontalContentAlignment="Right">آدرس:</Label>
+                    <TextBox Grid.Row="3" Grid.Column="1" Margin="2"  TextWrapping="Wrap" AcceptsReturn="True"
+HorizontalScrollBarVisibility="Disabled"
+VerticalScrollBarVisibility="Auto" Name="txtAddress"></TextBox>
+                </Grid>
+            </telerik:RadTabItem>
+            <telerik:RadTabItem Header="مالی">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" >درصد تخفیف:</Label>
+                    <telerik:RadNumericUpDown Name="txtDiscountPercent" Height="20" Width="100" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="1"  Minimum="0" Maximum="100" ValueFormat="Numeric" NumberDecimalDigits="0" Value="0" />
+                    <Label Grid.Row="1" VerticalAlignment="Center">حد اعتبار مشتری:</Label>
+                    <telerik:RadNumericUpDown Name="txtMaxCreditValue" Height="20" Width="100" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1"  Minimum="0" Maximum="99999999" ValueFormat="Currency" NumberDecimalDigits="0" Value="0" />
+
+                </Grid>
+            </telerik:RadTabItem>
+            <telerik:RadTabItem Header="اطلاعات حقوقی">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" >شناسه ملی:</Label>
+                    <TextBox x:Name="txtCodeMeli" Height="20" Width="100" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="1"   />
+                    <Label Grid.Row="1" VerticalAlignment="Center">کد اقتصادی:</Label>
+                    <TextBox Height="20" Width="100" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1"  x:Name="txtCodeEgtesadi" />
+
+                </Grid>
+
+            </telerik:RadTabItem>
+        </telerik:RadTabControl>
+        <WrapPanel Grid.Row="1" Orientation="Horizontal">
+            <Button IsDefault="True" x:Name="btnOk" Margin="2" Background="{x:Null}" BorderBrush="#FFC7C7C7" Click="btnOk_Click">
+                <Image Source="/WpfApp1;component/Content/Icons/Crud/ok.png" />
+            </Button>
+            <Button IsCancel="True" x:Name="btncancel" Margin="2" Background="{x:Null}" BorderBrush="#FFC7C7C7" Click="btncancel_Click">
+                <Image Source="/WpfApp1;component/Content/Icons/Crud/close.png" />
+            </Button>
+        </WrapPanel>
+    </Grid>
+</telerik:RadWindow>

@@ -1,0 +1,54 @@
+﻿<telerik:RadWindow x:Class="WpfApp1.Pages.Users.Users"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        Header="کاربران" Height="500" Width="700" FlowDirection="RightToLeft" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" FontFamily="/WpfApp1;component/Content/Fonts/#IRANSans" 
+         Activated="RadWindow_Activated"       >
+    <telerik:RadWindow.Resources>
+        <Style x:Key="MenuItemContainerStyle" TargetType="telerik:RadMenuItem">
+            <Setter Property="Header" Value="{Binding Text}"/>
+            <Setter Property="ItemsSource" Value="{Binding SubItems}"/>
+            <Setter Property="IsEnabled" Value="{Binding IsEnabled}"/>
+        </Style>
+    </telerik:RadWindow.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <WrapPanel Grid.Row="1">
+            <Button x:Name="btnnew" Click="btnnew_Click">
+                <Image Source="/WpfApp1;component/Content/Icons/Crud/Add.ico"/>
+            </Button>
+            <Button x:Name="btnRollManager" Click="btnRollManager_Click">
+                <Image Source="/WpfApp1;component/Content/Icons/user-role.png"/>
+            </Button>
+        </WrapPanel>
+        <telerik:RadGridView x:Name="grd" AutoGenerateColumns="False" ShowSearchPanel="True" MouseDoubleClick="grd_MouseDoubleClick" IsReadOnly="True" ShowGroupPanel="False">
+            <telerik:RadContextMenu.ContextMenu>
+                <telerik:RadContextMenu x:Name="GridContextMenu" ItemContainerStyle="{StaticResource MenuItemContainerStyle}" 
+                        Opened="GridContextMenu_Opened" ItemClick="GridContextMenu_ItemClick" />
+            </telerik:RadContextMenu.ContextMenu>
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewToggleRowDetailsColumn />
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding id}"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding UserName}"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding FullName}"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Email}"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding IsActive}"/>
+            </telerik:RadGridView.Columns>
+            <telerik:RadGridView.RowDetailsTemplate>
+                <DataTemplate>
+                    <telerik:RadTabControl >
+                        <telerik:RadTabItem Header="مدیریت نقش های">
+                            <Grid Width="Auto">
+
+                                <ListBox ItemsSource="{Binding Rolls}" DisplayMemberPath="description" SelectedValuePath="id"></ListBox>
+                            </Grid>
+                        </telerik:RadTabItem>
+                    </telerik:RadTabControl>
+                </DataTemplate>
+            </telerik:RadGridView.RowDetailsTemplate>
+        </telerik:RadGridView>
+    </Grid>
+</telerik:RadWindow>

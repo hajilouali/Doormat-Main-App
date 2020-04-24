@@ -1,0 +1,23 @@
+﻿<telerik:RadWindow x:Class="WpfApp1.Pages.Manufacture.AddManufacuryHistory"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        Header="بروز رسانی وضعیت تولید" Height="250" Width="300" FlowDirection="RightToLeft" WindowStartupLocation="CenterOwner" FontFamily="/WpfApp1;component/Content/Fonts/#IRANSans" ResizeMode="NoResize"
+                >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <WrapPanel Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" >
+            <Button Background="{x:Null}" BorderBrush="{x:Null}" Name="btnok" Click="btnok_Click">
+                <Image Source="/WpfApp1;component/Content/Icons/Crud/ok.png"/>
+            </Button>
+        </WrapPanel>
+        <Label Grid.Row="1">توضیحات :</Label>
+        <TextBox Margin="5" Grid.Row="2" Name="txtDiscription" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible"></TextBox>
+        <telerik:RadComboBox Margin="5" x:Name="Vaziyat" ItemsSource="{Binding ConditionManufactures}" SelectedValuePath="Value"/>
+    </Grid>
+</telerik:RadWindow>

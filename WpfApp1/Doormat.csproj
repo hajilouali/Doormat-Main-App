@@ -1,0 +1,689 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6483FC3E-3EFF-4A0A-97BF-E928F34A3542}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Doormat</RootNamespace>
+    <AssemblyName>Doormat</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo23 %282%29.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="adodb, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\..\Desktop\Reports.Wpf\.NETFramework4.5\adodb.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.4.0\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.4\lib\net47\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="FarsiMessageBox">
+      <HintPath>..\..\..\..\Desktop\FarsiMessageBox.dll</HintPath>
+    </Reference>
+    <Reference Include="LibExcel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Stimulsoft Reports 2018.1.6\Libs\Wpf\LibExcel.dll</HintPath>
+    </Reference>
+    <Reference Include="MD.PersianDateTime, Version=3.8.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MD.PersianDateTime.3.8.3\lib\MD.PersianDateTime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Features, Version=3.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.Features.3.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Http.Features.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=3.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.3.1.1\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq, Version=4.13.0.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.13.1\lib\net45\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.7.2.0.1422\lib\net45\Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Wpf, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.7.2.0.1422\lib\net45\Prism.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Base, Version=2018.1.6.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Stimulsoft Reports 2018.1.6\Libs\Wpf\Stimulsoft.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Client.Designer, Version=2018.1.6.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Stimulsoft Reports 2018.1.6\Libs\Wpf\Stimulsoft.Client.Designer.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Database.Wpf, Version=2018.1.6.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Stimulsoft Reports 2018.1.6\Libs\Wpf\Stimulsoft.Database.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Editor.Wpf, Version=2018.1.6.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Stimulsoft Reports 2018.1.6\Libs\Wpf\Stimulsoft.Editor.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report, Version=2018.1.6.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Stimulsoft Reports 2018.1.6\Libs\Wpf\Stimulsoft.Report.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Check, Version=2018.1.6.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Stimulsoft Reports 2018.1.6\Libs\Wpf\Stimulsoft.Report.Check.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Helper, Version=2018.1.6.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Stimulsoft Reports 2018.1.6\Libs\Wpf\Stimulsoft.Report.Helper.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Wpf, Version=2018.1.6.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Stimulsoft Reports 2018.1.6\Libs\Wpf\Stimulsoft.Report.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Wpf.BlackTheme, Version=2018.1.6.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Stimulsoft Reports 2018.1.6\Libs\Wpf\Stimulsoft.Report.Wpf.BlackTheme.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Wpf.Office2003BlueTheme, Version=2018.1.6.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Stimulsoft Reports 2018.1.6\Libs\Wpf\Stimulsoft.Report.Wpf.Office2003BlueTheme.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Wpf.Office2003OliveGreenTheme, Version=2018.1.6.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Stimulsoft Reports 2018.1.6\Libs\Wpf\Stimulsoft.Report.Wpf.Office2003OliveGreenTheme.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Wpf.Office2003SilverTheme, Version=2018.1.6.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Stimulsoft Reports 2018.1.6\Libs\Wpf\Stimulsoft.Report.Wpf.Office2003SilverTheme.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Wpf.Office2007BlackTheme, Version=2018.1.6.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Stimulsoft Reports 2018.1.6\Libs\Wpf\Stimulsoft.Report.Wpf.Office2007BlackTheme.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Wpf.Office2007BlueTheme, Version=2018.1.6.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Stimulsoft Reports 2018.1.6\Libs\Wpf\Stimulsoft.Report.Wpf.Office2007BlueTheme.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Wpf.Office2007SilverTheme, Version=2018.1.6.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Stimulsoft Reports 2018.1.6\Libs\Wpf\Stimulsoft.Report.Wpf.Office2007SilverTheme.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Wpf.Office2010BlueTheme, Version=2018.1.6.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Stimulsoft Reports 2018.1.6\Libs\Wpf\Stimulsoft.Report.Wpf.Office2010BlueTheme.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Wpf.Office2010WhiteTheme, Version=2018.1.6.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Stimulsoft Reports 2018.1.6\Libs\Wpf\Stimulsoft.Report.Wpf.Office2010WhiteTheme.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.WpfDesign, Version=2018.1.6.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Stimulsoft Reports 2018.1.6\Libs\Wpf\Stimulsoft.Report.WpfDesign.dll</HintPath>
+    </Reference>
+    <Reference Include="Svg, Version=2.2.1.39233, Culture=neutral, PublicKeyToken=12a0bac221edeae2, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Stimulsoft Reports 2018.1.6\Libs\Wpf\Svg.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.7.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Pipelines, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Pipelines.4.7.0\lib\netstandard2.0\System.IO.Pipelines.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.4.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.7.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.7.2.0.1422\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls, Version=2019.3.1023.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWPF\2019.3.1023.45\Telerik.Windows.Controls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Chart, Version=2019.3.1023.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWPF\2019.3.1023.45\Telerik.Windows.Controls.Chart.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Docking, Version=2019.3.1023.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWPF\2019.3.1023.45\Telerik.Windows.Controls.Docking.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.FileDialogs, Version=2019.3.1023.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Controls.GridView, Version=2019.3.1023.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Controls.ImageEditor, Version=2019.3.1023.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Desktop\New folder\TelerikWpfApp1\TelerikWpfApp1\bin\Debug\Telerik.Windows.Controls.ImageEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Input, Version=2019.3.1023.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWPF\2019.3.1023.45\Telerik.Windows.Controls.Input.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Navigation, Version=2019.3.1023.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWPF\2019.3.1023.45\Telerik.Windows.Controls.Navigation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Data, Version=2019.3.1023.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWPF\2019.3.1023.45\Telerik.Windows.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Pages\Experts\Expert.xaml.cs">
+      <DependentUpon>Expert.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Experts\ExpertsMain.xaml.cs">
+      <DependentUpon>ExpertsMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Experts\FindCLient.xaml.cs">
+      <DependentUpon>FindCLient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Factor\FactorAttachment.xaml.cs">
+      <DependentUpon>FactorAttachment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Factor\ImageEdite.xaml.cs">
+      <DependentUpon>ImageEdite.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Factor\UploadAttachment.xaml.cs">
+      <DependentUpon>UploadAttachment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Manufacture\AddManufacuryHistory.xaml.cs">
+      <DependentUpon>AddManufacuryHistory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Manufacture\MainManufacture.xaml.cs">
+      <DependentUpon>MainManufacture.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Manufacture\ManufacturyReport.xaml.cs">
+      <DependentUpon>ManufacturyReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Sanad\AddSanad.xaml.cs">
+      <DependentUpon>AddSanad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Sanad\FindAccountingHeading.xaml.cs">
+      <DependentUpon>FindAccountingHeading.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Users\Rolls.xaml.cs">
+      <DependentUpon>Rolls.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Users\setPassword.xaml.cs">
+      <DependentUpon>setPassword.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Users\UserManager.xaml.cs">
+      <DependentUpon>UserManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Users\Users.xaml.cs">
+      <DependentUpon>Users.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Users\UsersInRoll.xaml.cs">
+      <DependentUpon>UsersInRoll.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RepostFormTools\CalculateReport.cs" />
+    <Compile Include="RepostFormTools\FactorReports.cs" />
+    <Compile Include="RepostFormTools\MoeinReport.cs" />
+    <Compile Include="RepostFormTools\SanadsReports.cs" />
+    <Compile Include="RepostFormTools\ViewModel\ClientReportsViewModel.cs" />
+    <Compile Include="RepostFormTools\ViewModel\SanadsReportsViewModel.cs" />
+    <Compile Include="Reposts\Accounting\Accounting.xaml.cs">
+      <DependentUpon>Accounting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Reposts\Accounting\ChlidAccounting.xaml.cs">
+      <DependentUpon>ChlidAccounting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Reposts\Accounting\ClientAccounting.xaml.cs">
+      <DependentUpon>ClientAccounting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Reposts\Accounting\Factors.xaml.cs">
+      <DependentUpon>Factors.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Reposts\Factor\FactorInPending.xaml.cs">
+      <DependentUpon>FactorInPending.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Reposts\Factor\Factorview.xaml.cs">
+      <DependentUpon>Factorview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Reposts\Factor\Moein.xaml.cs">
+      <DependentUpon>Moein.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Reposts\Factor\MoeinClient.xaml.cs">
+      <DependentUpon>MoeinClient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ServerSetting.xaml.cs">
+      <DependentUpon>ServerSetting.xaml</DependentUpon>
+    </Compile>
+    <Page Include="LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Class1.cs" />
+    <Compile Include="CustomLocalizationManager.cs" />
+    <Compile Include="LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Pages\Bank\AddBank.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Bank\Bank.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Clients\AddClient.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Clients\Clients.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Experts\Expert.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Experts\ExpertsMain.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Experts\FindCLient.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Factor\Discount.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Factor\Factor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Factor\FactorAttachment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Factor\FindProduct.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Factor\ImageEdite.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Factor\TaxtCalculate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Factor\UploadAttachment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Manufacture\AddManufacuryHistory.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Manufacture\MainManufacture.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Manufacture\ManufacturyReport.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Products\Product.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Products\ProductMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Sanad\AddSanad.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Sanad\FindAccountingHeading.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Users\Rolls.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Users\setPassword.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Users\UserManager.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Users\Users.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Users\UsersInRoll.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Reposts\Accounting\Accounting.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Reposts\Accounting\ChlidAccounting.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Reposts\Accounting\ClientAccounting.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Reposts\Accounting\Factors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Reposts\Factor\FactorInPending.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Reposts\Factor\Factorview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Reposts\Factor\Moein.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Reposts\Factor\MoeinClient.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ServerSetting.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Pages\Bank\AddBank.xaml.cs">
+      <DependentUpon>AddBank.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Bank\Bank.xaml.cs">
+      <DependentUpon>Bank.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Clients\AddClient.xaml.cs">
+      <DependentUpon>AddClient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Clients\Clients.xaml.cs">
+      <DependentUpon>Clients.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Clients\ClientsContext.cs" />
+    <Compile Include="Pages\Factor\Discount.xaml.cs">
+      <DependentUpon>Discount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Factor\Factor.xaml.cs">
+      <DependentUpon>Factor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Factor\FactorContext.cs" />
+    <Compile Include="Pages\Factor\FindProduct.xaml.cs">
+      <DependentUpon>FindProduct.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Factor\MenuItem.cs" />
+    <Compile Include="Pages\Factor\MyColumn.cs" />
+    <Compile Include="Pages\Factor\TaxtCalculate.xaml.cs">
+      <DependentUpon>TaxtCalculate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Products\Product.xaml.cs">
+      <DependentUpon>Product.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Products\ProductMain.xaml.cs">
+      <DependentUpon>ProductMain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Products\ProductsContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="localization\GridViewResources.fa.resx" />
+    <EmbeddedResource Include="Properties\Licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Resource Include="Content\Fonts\IRANSANSApp.TTF" />
+    <Resource Include="Content\Fonts\IRANSANS_BOLDApp.TTF" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Resource Include="GetFolderPath\Content.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Icons\Library Alt.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Icons\MSN Messenger.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Icons\98.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Icons\Defrag.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Icons\Wincal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Icons\Notepad.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Icons\Folder.png" />
+    <Resource Include="Content\Icons\Search.png" />
+    <Resource Include="Content\Icons\Settings2.png" />
+    <Resource Include="Content\Icons\Spreadsheet.png" />
+    <Resource Include="Content\Icons\Tasks.png" />
+    <Resource Include="Content\Icons\Text-Edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Icons\Contact.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataLayer\DataLayer.csproj">
+      <Project>{1b84c1f1-1c1f-45c5-8118-70b494418873}</Project>
+      <Name>DataLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utility\Utility.csproj">
+      <Project>{f84957b2-1481-436a-bfd7-2bf71159bd51}</Project>
+      <Name>Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Icons\Crud\Add.ico" />
+    <Resource Include="Content\Icons\Crud\Delete_01.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Icons\Crud\update.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Icons\Crud\ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Icons\Crud\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Icons\Crud\627249-delete3-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Icons\Crud\Folder_Enter-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Icons\Crud\edite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Icons\Crud\cancel--v1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Icons\refresh-icon-vector-10875019.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Edite\Factor\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Icons\Report.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Icons\print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Icons\edit-image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Icons\user-role.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Icons\manufacturer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Icons\report-icon-manufacture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Icons\Expert.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Icons\assesement_expert-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Content\Icons\invoice_partner.png" />
+    <Resource Include="Content\Icons\invoicReport.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="logo23.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="logo23 %281%29.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="logo23 %282%29.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

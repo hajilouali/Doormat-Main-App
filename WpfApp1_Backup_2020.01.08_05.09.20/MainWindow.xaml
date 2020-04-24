@@ -1,0 +1,116 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" x:Class="WpfApp1.MainWindow"
+        mc:Ignorable="d" Loaded="Window_Loaded"
+        Title="درمت" FlowDirection="RightToLeft" WindowStartupLocation="CenterScreen" WindowState="Maximized" FontFamily="IRANSans">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Background="Aqua" >
+            <DockPanel>
+                <Menu DockPanel.Dock="Top" FontFamily="/WpfApp1;component/Content/Fonts/#IRANSans" FontSize="14" >
+                    <MenuItem Header="اطلاعات پایه " />
+                    <MenuItem Header=" محصولات">                        
+                        <MenuItem Header="افزودن محصول"></MenuItem>
+                        <Separator/>
+                        <MenuItem Header="لیست محصولات "></MenuItem>
+                    </MenuItem>
+                    <MenuItem Header="حسابداری">
+                        <MenuItem Header="عملیات فاکتور">
+                            <MenuItem Header="فاکتور جدید"></MenuItem>
+                            <MenuItem Header="پیش فاکتور جدید"></MenuItem>
+                            <MenuItem Header="تبدیل اسناد"></MenuItem>
+                        </MenuItem>
+                        <MenuItem Header="عملیات سند">
+                            <MenuItem Header="سند جدید"></MenuItem>
+                            
+                        </MenuItem>
+                    </MenuItem>
+                    <MenuItem Header="گزارشات"/>
+                    <MenuItem Header="تنظیمات" >
+                        <MenuItem Header="تنظیمات نرم افزار "></MenuItem>
+                        <MenuItem Header="تنظیمات کاربران"></MenuItem>
+                    </MenuItem>
+                </Menu>
+                
+            </DockPanel>
+            <DockPanel>
+                <ToolBarTray DockPanel.Dock="Top">
+                    <ToolBar Band="0" BandIndex="0" >
+                        <Button Name="btnProduct" Click="btnProduct_Click">
+                            <StackPanel >
+                                <Image Source="Content/Icons/Library Alt.ico" Width="50"/>
+                                <Label  HorizontalAlignment="Center">کالا</Label>
+                            </StackPanel>
+                        </Button>
+                        <Button >
+                            <StackPanel >
+                                <Image Source="Content/Icons/MSN Messenger.png" Width="50"/>
+                                <Label  HorizontalAlignment="Center">طرف حساب</Label>
+                            </StackPanel>
+                        </Button>
+                        <Button >
+                            <StackPanel >
+                                <Image Source="Content/Icons/Defrag.png" Width="50"/>
+                                <Label  HorizontalAlignment="Center" Content="حساب بانکی"/>
+                            </StackPanel>
+                        </Button>
+                        <Button >
+                            <StackPanel >
+                                <Image Source="Content/Icons/Spreadsheet.png" Width="50"/>
+                                <Label  HorizontalAlignment="Center" Content="فاکتور"/>
+                            </StackPanel>
+                        </Button>
+                        <Button >
+                            <StackPanel >
+                                <Image Source="Content/Icons/Text-Edit.png" Width="50"/>
+                                <Label  HorizontalAlignment="Center" Content="صدور سند"/>
+                            </StackPanel>
+                        </Button>
+                        <Button >
+                            <StackPanel >
+                                <Image Source="Content/Icons/Search.png" Width="50"/>
+                                <Label  HorizontalAlignment="Center" Content="گزارشات"/>
+                            </StackPanel>
+                        </Button>
+                        <Button >
+                            <StackPanel >
+                                <Image Source="Content/Icons/Contact.png" Width="50"/>
+                                <Label  HorizontalAlignment="Center" Content="معین اشخاص"/>
+                            </StackPanel>
+                        </Button>
+                        
+                    </ToolBar>
+                   
+                </ToolBarTray>
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                </ScrollViewer>
+
+            </DockPanel>
+        </StackPanel>
+        <WrapPanel DockPanel.Dock="Left" Background="Aqua" >
+            
+        </WrapPanel>
+
+        <StatusBar DockPanel.Dock="Bottom" Background="AliceBlue">
+            
+            <StatusBarItem HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal">
+                    <Label  Name="Lbldateoc"/>
+                </StackPanel>
+            </StatusBarItem>
+            
+            <StatusBarItem HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal">
+                    <Label HorizontalAlignment="Right" Name="lblusername"/>
+                    <Label HorizontalAlignment="Right" Name="LblStatus"/>
+                </StackPanel>
+                
+            </StatusBarItem>
+            
+        </StatusBar>
+        <Grid Background="#FFC8BCAB"></Grid>
+    </DockPanel>
+</Window>

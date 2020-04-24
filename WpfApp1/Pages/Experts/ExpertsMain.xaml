@@ -1,0 +1,57 @@
+﻿<telerik:RadWindow x:Class="WpfApp1.Pages.Experts.ExpertsMain"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        Header="میز کار بازدید ها" Height="400" Width="600" FlowDirection="RightToLeft" WindowStartupLocation="CenterOwner" FontFamily="/WpfApp1;component/Content/Fonts/#IRANSans" 
+       Activated="RadWindow_Activated" >
+    <telerik:RadWindow.Resources>
+
+        <Style x:Key="MenuItemContainerStyle" TargetType="telerik:RadMenuItem">
+            <Setter Property="Header" Value="{Binding Text}"/>
+            <Setter Property="ItemsSource" Value="{Binding SubItems}"/>
+            <Setter Property="IsEnabled" Value="{Binding IsEnabled}"/>
+        </Style>
+    </telerik:RadWindow.Resources>
+    <Grid>
+        <telerik:RadGridView x:Name="grd" AutoGenerateColumns="False" ShowSearchPanel="True" SearchPanelCloseButtonVisibility="Hidden">
+            <telerik:RadContextMenu.ContextMenu>
+
+                <telerik:RadContextMenu x:Name="GridContextMenu" ItemContainerStyle="{StaticResource MenuItemContainerStyle}" 
+                        Opened="GridContextMenu_Opened" ItemClick="GridContextMenu_ItemClick" />
+            </telerik:RadContextMenu.ContextMenu>
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewToggleRowDetailsColumn />
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding id}"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding DateTime}"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding ClientName}" Width="*"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Clientphone}" Width="*"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding ExpertCorditionTitle}"/>                
+            </telerik:RadGridView.Columns>
+            <telerik:RadGridView.RowDetailsTemplate>
+                <DataTemplate>
+                    <telerik:RadTabControl>
+                        <telerik:RadTabItem Header="اطلاعا مشتری">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Label >نام مشتری :</Label>
+                                <Label Grid.Row="1">آردس :</Label>
+                                <Label Grid.Row="2">تلفن :</Label>
+                                <Label Content="{Binding ClientName}" Grid.Row="0" Grid.Column="1"/>
+                                <Label Content="{Binding Clientaddress}" Grid.Row="1" Grid.Column="1"/>
+                                <Label Content="{Binding Clientphone}" Grid.Row="2" Grid.Column="1"/>
+                            </Grid>                            
+                        </telerik:RadTabItem>
+                    </telerik:RadTabControl>
+                </DataTemplate>
+            </telerik:RadGridView.RowDetailsTemplate>
+        </telerik:RadGridView> 
+    </Grid>
+</telerik:RadWindow>

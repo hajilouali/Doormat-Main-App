@@ -1,0 +1,26 @@
+﻿<telerik:RadWindow x:Class="WpfApp1.Reposts.Factor.Factorview"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        Header="مشاهده فاکتور" Height="100" Width="300"
+        FlowDirection="RightToLeft" FontFamily="/WpfApp1;component/Content/Fonts/#IRANSans" WindowStartupLocation="CenterOwner"  ResizeMode="NoResize"      >
+    <telerik:RadBusyIndicator BusyContent="در حال بارگذاری" Name="busycontent" >
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Name="lbltitle">شماره فاکتور:</Label>
+            <TextBox PreviewTextInput="txtFactorNumber_PreviewTextInput"  x:Name="txtFactorNumber" Grid.Row="0" Grid.Column="1" Margin="3" VerticalContentAlignment="Center"></TextBox>
+            <WrapPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                <Button Background="{x:Null}" BorderBrush="{x:Null}" Name="Ok" Click="Ok_Click" IsDefault="True">
+                    <Image Source="/WpfApp1;component/Content/Icons/Crud/ok.png" ></Image>
+                </Button>
+            </WrapPanel>
+        </Grid>
+    </telerik:RadBusyIndicator>
+</telerik:RadWindow>

@@ -1,0 +1,62 @@
+﻿<telerik:RadWindow x:Class="WpfApp1.Reposts.Factor.FactorInPending"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        Header="فاکتور های در انتظار تایید" Height="500" Width="700" FlowDirection="RightToLeft" WindowStartupLocation="CenterOwner" FontFamily="/WpfApp1;component/Content/Fonts/#IRANSans" 
+                >
+    <telerik:RadWindow.Resources>
+
+        <Style x:Key="MenuItemContainerStyle" TargetType="telerik:RadMenuItem">
+            <Setter Property="Header" Value="{Binding Text}"/>
+            <Setter Property="ItemsSource" Value="{Binding SubItems}"/>
+            <Setter Property="IsEnabled" Value="{Binding IsEnabled}"/>
+        </Style>
+        
+    </telerik:RadWindow.Resources>
+    <Grid>
+        <telerik:RadTabControl >
+            <telerik:RadTabControl.Items>
+                <telerik:RadTabItem Header="همکاران فروش" >
+                    <telerik:RadGridView x:Name="grdcellpartner" AutoGenerateColumns="False" IsReadOnly="True" ShowGroupPanel="False" ShowSearchPanel="True" SearchPanelCloseButtonVisibility="Hidden">
+                        <telerik:RadContextMenu.ContextMenu>
+
+                            <telerik:RadContextMenu x:Name="GridContextMenu" ItemContainerStyle="{StaticResource MenuItemContainerStyle}" 
+                        Opened="GridContextMenu_Opened" ItemClick="GridContextMenu_ItemClick" />
+                        </telerik:RadContextMenu.ContextMenu>
+                        <telerik:RadGridView.Columns>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding id}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding DateTime}" Width="*"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding UserName}" Width="*"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding TotalPrice,StringFormat=n0}" />
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Discount,StringFormat=n0}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Taxes,StringFormat=n0}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding FactorPrice,StringFormat=n0}" Width="*"/>                            
+                        </telerik:RadGridView.Columns>
+                    </telerik:RadGridView>
+                </telerik:RadTabItem>
+                
+                <telerik:RadTabItem Header="کارشناسان شرکت">
+                    <telerik:RadGridView x:Name="grdpartner" AutoGenerateColumns="False" IsReadOnly="True" ShowGroupPanel="False" ShowSearchPanel="True" SearchPanelCloseButtonVisibility="Hidden">
+                        <telerik:RadContextMenu.ContextMenu>
+
+                            <telerik:RadContextMenu x:Name="GridContextMenuPartner" ItemContainerStyle="{StaticResource MenuItemContainerStyle}" 
+                        Opened="GridContextMenu_OpenedPartner" ItemClick="GridContextMenuPartner_ItemClick" />
+                        </telerik:RadContextMenu.ContextMenu>
+                        <telerik:RadGridView.Columns>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding id}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding DateTime}" Width="*"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding UserName}" Width="*"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding User_Name}" Width="*"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding TotalPrice,StringFormat=n0}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Discount,StringFormat=n0}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding Taxes,StringFormat=n0}"/>
+                            <telerik:GridViewDataColumn DataMemberBinding="{Binding FactorPrice,StringFormat=n0}" Width="*"/>
+                        </telerik:RadGridView.Columns>
+                    </telerik:RadGridView>
+                </telerik:RadTabItem>
+                
+            </telerik:RadTabControl.Items>
+        </telerik:RadTabControl>
+        
+    </Grid>
+</telerik:RadWindow>

@@ -1,0 +1,121 @@
+﻿<telerik:RadWindow x:Class="WpfApp1.Pages.Factor.Factor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                   xmlns:custom="clr-namespace:WpfApp1.Pages.Factor"
+        Header="عملیات فاکتور" ResizeMode="NoResize" Height="500" Width="800" FlowDirection="RightToLeft" FontFamily="/WpfApp1;component/Content/Fonts/#IRANSans" WindowStartupLocation="CenterScreen" MinWidth="800" MinHeight="500" Activated="RadWindow_Activated">
+    <telerik:RadWindow.Resources>
+        <Style x:Key="MenuItemContainerStyle" TargetType="telerik:RadMenuItem">
+            <Setter Property="Header" Value="{Binding Text}"/>
+            <Setter Property="ItemsSource" Value="{Binding SubItems}"/>
+            <Setter Property="IsEnabled" Value="{Binding IsEnabled}"/>
+        </Style>
+    </telerik:RadWindow.Resources>
+    <telerik:RadBusyIndicator BusyContent="در حال بارگذاری" Name="busycontent" >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <telerik:RadTabControl Grid.Row="0" Name="tab" SelectionChanged="tab_SelectionChanged" >
+                <telerik:RadTabItem Header="پیش فاکتور " Name="tPish" FontFamily="/WpfApp1;component/Content/Fonts/#IRANSans" >
+
+                </telerik:RadTabItem>
+                <telerik:RadTabItem Header=" فاکتور فروش " Name="tfactor" FontFamily="/WpfApp1;component/Content/Fonts/#IRANSans" >
+
+                </telerik:RadTabItem>
+
+            </telerik:RadTabControl>
+            <Grid Grid.Row="1">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="65"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition />
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right">طرف حساب :</Label>
+                <Label Grid.Row="0" Grid.Column="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Right">کد:</Label>
+                <Label Grid.Row="0" Grid.Column="4" VerticalContentAlignment="Center" HorizontalContentAlignment="Right">تلفن:</Label>
+                <Label Grid.Row="0" Grid.Column="6" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" >شماره فاکتور:</Label>
+                <Label Grid.Row="0" Grid.Column="7" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Name="txtFactorNumber"></Label>
+                <Label Grid.Row="1" Grid.Column="6" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" >تاریخ:</Label>
+                <telerik:RadDatePicker Grid.Row="1" Grid.Column="7" Name="txtDate" TodayButtonVisibility="Visible" TodayButtonContent="امروز" DateTimeWatermarkContent="انتخاب تاریخ" ErrorTooltipContent="لطفا تاریخ را در فرمت صحیح وارد نمایید"></telerik:RadDatePicker>
+                <telerik:RadComboBox Grid.Row="0" Grid.Column="1" x:Name="RadComboBox1"  VerticalAlignment="Center"
+					 SelectedValuePath="id" DisplayMemberPath="ClientName"
+					ClearSelectionButtonContent="پاک"
+					ClearSelectionButtonVisibility="Visible"
+					CanAutocompleteSelectItems="True"
+					CanKeyboardNavigationSelectItems="True"
+					IsEditable="True"
+					IsReadOnly="True"
+					OpenDropDownOnFocus="True"
+					IsFilteringEnabled="True"
+					TextSearchMode="Contains"
+					IsDropDownOpen="False"
+					EmptyText="جستجو طرف حساب" 
+					UpdateSelectionOnLostFocus="True" SelectionChanged="RadComboBox1_SelectionChanged" />
+                <Label Grid.Row="0" Grid.Column="3" Name="lblcodeClient" Content="{Binding SelectedValue,ElementName=RadComboBox1}" DataContextChanged="lblcodeClient_DataContextChanged"></Label>
+                <TextBox Grid.Row="0" Grid.Column="5" Margin="3" Name="txtphone" ></TextBox>
+                <Label Content="آدرس :" Grid.Row="1" Grid.Column="0"/>
+                <TextBox x:Name="txtaddrss" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" Margin="3"></TextBox>
+                <WrapPanel Grid.Row="5" Grid.ColumnSpan="2">
+                    <Button Margin="3" Background="{x:Null}" Name="btnClick" Click="btnClick_Click">
+                        <Image Source="/WpfApp1;component/Content/Icons/Crud/Folder_Enter-512.png" />
+                    </Button>
+
+                </WrapPanel>
+                <WrapPanel Grid.Row="5" Grid.Column="7" HorizontalAlignment="Right" >
+                    <Button Margin="3" Background="{x:Null}" Name="btnCancel" Click="btnCancel_Click">
+                        <Image Source="/WpfApp1;component/Content/Icons/Crud/cancel--v1.png"/>
+                    </Button>
+                </WrapPanel>
+                <Label Grid.Row="4">توضیحات :</Label>
+                <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="7" Margin="3" Padding="3" Name="txtDiscription"></TextBox>
+                <Label Grid.Row="3" Grid.Column="6" VerticalAlignment="Center">ریال</Label>
+                <WrapPanel Grid.Row="3" Grid.Column="7" HorizontalAlignment="Center">
+                    <Button Height="35" Background="{x:Null}" Margin="2" Name="refresh" Click="refresh_Click">
+                        <Image Source="/WpfApp1;component/Content/Icons/refresh-icon-vector-10875019.png" />
+                    </Button>
+                </WrapPanel>
+                <WrapPanel Grid.Row="3" Grid.Column="5" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <TextBlock x:Name="sum">0</TextBlock>
+                </WrapPanel>
+
+                <telerik:RadGridView  Grid.Row="2" Grid.ColumnSpan="8" TextInput="dgRows_TextInput"  SelectionMode="Single" SelectionUnit="Cell" GroupRenderMode="Flat" ShowGroupPanel="False" AutoGenerateColumns="False" Name="dgRows" TextBoxBase.TextChanged="dgRows_TextChanged" KeyDown="dgRows_KeyDown">
+                    <telerik:RadContextMenu.ContextMenu>
+                        <telerik:RadContextMenu x:Name="GridContextMenu" ItemContainerStyle="{StaticResource MenuItemContainerStyle}" 
+                        Opened="GridContextMenu_Opened" ItemClick="GridContextMenu_ItemClick" />
+                    </telerik:RadContextMenu.ContextMenu>
+                    <telerik:RadGridView.Columns>
+                        <custom:MyColumn Header="#"
+								 Width="30"
+								  />
+                        <telerik:GridViewComboBoxColumn ShowDistinctFilters="False" ShowFieldFilters="False" ShowFilterButton="False" IsSortable="False" DataMemberBinding="{Binding ProductAndService_ID}" SelectedValueMemberPath="id" DisplayMemberPath="ProductName" IsComboBoxEditable="True" EmptyText="انتخاب محصول"
+												    Width="*"
+												     />
+                        <telerik:GridViewDataColumn ShowDistinctFilters="False" ShowFieldFilters="False" ShowFilterButton="False" IsSortable="False" DataMemberBinding="{Binding Width}" Width="60" />
+                        <telerik:GridViewDataColumn ShowDistinctFilters="False" ShowFieldFilters="False" ShowFilterButton="False" IsSortable="False" DataMemberBinding="{Binding length}" Width="60"/>
+                        <telerik:GridViewDataColumn ShowDistinctFilters="False" ShowFieldFilters="False" ShowFilterButton="False" IsSortable="False" DataMemberBinding="{Binding Unit}" Width="60"/>
+                        <telerik:GridViewDataColumn IsReadOnly="True" ShowDistinctFilters="False" ShowFieldFilters="False" ShowFilterButton="False" IsSortable="False" DataMemberBinding="{Binding Metraj}" Width="60"/>
+                        <telerik:GridViewDataColumn IsReadOnly="True" ShowDistinctFilters="False" ShowFieldFilters="False" ShowFilterButton="False" IsSortable="False" DataMemberBinding="{Binding Price,StringFormat=n0}" Width="60"/>
+                        <telerik:GridViewDataColumn IsReadOnly="False" ShowDistinctFilters="False" ShowFieldFilters="False" ShowFilterButton="False" IsSortable="False" DataMemberBinding="{Binding rowDiscription}" Width="*"/>
+                    </telerik:RadGridView.Columns>
+                </telerik:RadGridView>
+
+            </Grid>
+        </Grid>
+    </telerik:RadBusyIndicator>
+</telerik:RadWindow>

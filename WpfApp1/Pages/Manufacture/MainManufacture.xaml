@@ -1,0 +1,95 @@
+﻿<telerik:RadWindow x:Class="WpfApp1.Pages.Manufacture.MainManufacture"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        Header="میز کار تولید" Height="500" Width="800" FlowDirection="RightToLeft" WindowStartupLocation="CenterOwner" FontFamily="/WpfApp1;component/Content/Fonts/#IRANSans" 
+          Activated="RadWindow_Activated"      >
+    <telerik:RadWindow.Resources>
+        <Style x:Key="MenuItemContainerStyle" TargetType="telerik:RadMenuItem">
+            <Setter Property="Header" Value="{Binding Text}"/>
+            <Setter Property="ItemsSource" Value="{Binding SubItems}"/>
+            <Setter Property="IsEnabled" Value="{Binding IsEnabled}"/>
+        </Style>
+    </telerik:RadWindow.Resources>
+    <Grid Margin="5">
+        <telerik:RadGridView Name="grd" AutoGenerateColumns="False" ShowSearchPanel="True" SearchPanelCloseButtonVisibility="Hidden" IsReadOnly="True" RowLoaded="grd_RowLoaded">
+            <telerik:RadContextMenu.ContextMenu>
+                <telerik:RadContextMenu x:Name="GridContextMenu" ItemContainerStyle="{StaticResource MenuItemContainerStyle}" 
+                        Opened="GridContextMenu_Opened" ItemClick="GridContextMenu_ItemClick" />
+            </telerik:RadContextMenu.ContextMenu>
+            <telerik:RadGridView.Columns>
+                
+                <telerik:GridViewToggleRowDetailsColumn />
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding id}"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Factor_ID}"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding FactorClientName}"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding InDateTime}" />
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding ConditionManufactureTitle}"/>
+            </telerik:RadGridView.Columns>
+            <telerik:RadGridView.RowDetailsTemplate>
+                <DataTemplate>
+                    <telerik:RadTabControl >
+                        <telerik:RadTabItem Header="تاریخچه">
+                            <Grid Width="Auto" >
+                                <telerik:RadGridView ShowGroupPanel="False" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding ManufactureHistories}">
+                                    <telerik:RadGridView.Columns>
+                                        <telerik:GridViewDataColumn DataMemberBinding="{Binding UserFullname}"/>
+                                        <telerik:GridViewDataColumn DataMemberBinding="{Binding DateTime}"/>
+                                        <telerik:GridViewDataColumn DataMemberBinding="{Binding ConditionManufactureTitle}"/>
+                                        <telerik:GridViewDataColumn DataMemberBinding="{Binding Discription}" Width="*"/>
+                                    </telerik:RadGridView.Columns>
+                                    <!--<telerik:RadGridView.RowDetailsTemplate>
+                                        <DataTemplate>
+                                            <Grid DataContext="{Binding ManufactureHistories}">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Label>توضیحات :</Label>
+                                                <Label Grid.Column="1" Content="{Binding Discription}"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </telerik:RadGridView.RowDetailsTemplate>-->
+                                </telerik:RadGridView>
+                                
+                            </Grid>
+                        </telerik:RadTabItem>
+                        <telerik:RadTabItem Header="وضعیت مالی">
+                            <Grid DataContext="{Binding ClientAccountingStatus}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Label>وضعیت مالی :</Label>
+                                <Label Grid.Column="1" Content="{Binding status}"/>
+                                <Label Grid.Column="2">مانده :</Label>
+                                <TextBox IsReadOnly="True" Grid.Column="3" VerticalContentAlignment="Center" BorderBrush="{x:Null}" Text="{Binding Price,StringFormat=n0}"/>
+                            </Grid>
+                        </telerik:RadTabItem>
+                        <telerik:RadTabItem Header="اطلاعات تماس مشتری">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Label>نام / شرکت :</Label>
+                                <Label Grid.Row="1">تلفن:</Label>
+                                <Label Grid.Row="2">آدرس :</Label>
+                                <Label Grid.Column="1" Content="{Binding FactorClientName}"/>
+                                <Label Grid.Column="1" Grid.Row="1" Content="{Binding FactorClientPhone}"/>
+                                <Label Grid.Column="1" Grid.Row="2" Content="{Binding FactorClientaddress}"/>
+                            </Grid>
+                        </telerik:RadTabItem>
+                    </telerik:RadTabControl>
+                </DataTemplate>
+            </telerik:RadGridView.RowDetailsTemplate>
+        </telerik:RadGridView>
+    </Grid>
+</telerik:RadWindow>

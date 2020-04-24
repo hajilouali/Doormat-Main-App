@@ -1,0 +1,62 @@
+﻿<telerik:RadWindow xmlns:FileDialogs1="clr-namespace:Telerik.Windows.Controls.FileDialogs;assembly=WpfApp1"  xmlns:FileDialogs="clr-namespace:Telerik.Windows.Controls.FileDialogs;assembly=WpfApp1"  x:Class="WpfApp1.Reposts.Accounting.ClientAccounting"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        Header="گزارش بدهکاران/بستانکاران" Height="450" Width="500" FlowDirection="RightToLeft" WindowStartupLocation="CenterOwner" FontFamily="/WpfApp1;component/Content/Fonts/#IRANSans" MaxWidth="500" MaxHeight="450" MinWidth="500" MinHeight="450" 
+                >
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <WrapPanel Grid.Row="4">
+            <Button Background="{x:Null}" BorderBrush="{x:Null}" Name="btnReport" Click="btnReport_Click" ToolTip="مشاهده گزارش">
+                <Image Source="/WpfApp1;component/Content/Icons/Report.png"/>
+            </Button>
+        </WrapPanel>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="113"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <WrapPanel Grid.Column="0">
+                <CheckBox FlowDirection="LeftToRight" VerticalContentAlignment="Center" x:Name="chbed"></CheckBox>
+                <Label>مانده بدهی از </Label>
+            </WrapPanel>
+            <WrapPanel Grid.Column="1">
+                <TextBox VerticalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox"  VerticalAlignment="Center" Margin="3" Width="100" Name="txtbedin" IsEnabled="{Binding IsChecked,ElementName=chbed}" ></TextBox>
+                <Label>تا</Label>
+                <TextBox VerticalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox" VerticalAlignment="Center" Margin="3" Width="100" Name="txtbedout" IsEnabled="{Binding IsChecked,ElementName=chbed}"></TextBox>
+            </WrapPanel>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <WrapPanel Grid.Column="0">
+                <CheckBox FlowDirection="LeftToRight" VerticalContentAlignment="Center" x:Name="ckbes" ></CheckBox>
+                <Label>مانده بستانکاری از</Label>
+            </WrapPanel>
+            <WrapPanel Grid.Column="1">
+                <TextBox VerticalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox" VerticalAlignment="Center" Margin="3" Width="100" Name="txtbesin" IsEnabled="{Binding IsChecked,ElementName=ckbes}"></TextBox>
+                <Label>تا</Label>
+                <TextBox VerticalContentAlignment="Center" PreviewTextInput="NumberValidationTextBox" VerticalAlignment="Center" Margin="3" Width="100" Name="txtbesout" IsEnabled="{Binding IsChecked,ElementName=ckbes}"></TextBox>
+            </WrapPanel>
+        </Grid>
+        <WrapPanel Grid.Row="0">
+            <CheckBox FlowDirection="LeftToRight" VerticalContentAlignment="Center" x:Name="chclient"></CheckBox>
+            <Label>انتخاب طرف حساب</Label>
+        </WrapPanel>
+        <telerik:RadGridView x:Name="grd" Grid.Row="1" IsEnabled="{Binding IsChecked,ElementName=chclient}" AutoGenerateColumns="False" ShowSearchPanel="True" ShowGroupPanel="False" IsReadOnly="True">
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding id}" Width="Auto"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding ClientName}" Width="Auto"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding ClientAddress}" Width="*"/>
+            </telerik:RadGridView.Columns>
+        </telerik:RadGridView>
+    </Grid>
+</telerik:RadWindow>

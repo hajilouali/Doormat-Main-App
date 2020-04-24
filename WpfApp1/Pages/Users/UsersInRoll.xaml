@@ -1,0 +1,53 @@
+﻿<telerik:RadWindow x:Class="WpfApp1.Pages.Users.UsersInRoll"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        Header="UsersInRoll" Height="300" Width="500" FlowDirection="RightToLeft" WindowStartupLocation="CenterOwner"  FontFamily="/WpfApp1;component/Content/Fonts/#IRANSans"
+                >
+    <telerik:RadWindow.Resources>
+        <Style x:Key="MenuItemContainerStyle" TargetType="telerik:RadMenuItem">
+            <Setter Property="Header" Value="{Binding Text}"/>
+            <Setter Property="ItemsSource" Value="{Binding SubItems}"/>
+            <Setter Property="IsEnabled" Value="{Binding IsEnabled}"/>
+        </Style>
+    </telerik:RadWindow.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <telerik:RadComboBox Grid.Row="0" Grid.Column="0" x:Name="RadComboBox1"  VerticalAlignment="Center"
+					 SelectedValuePath="id" DisplayMemberPath="FullName"
+					ClearSelectionButtonContent="پاک"
+					ClearSelectionButtonVisibility="Visible"
+					CanAutocompleteSelectItems="True"
+					CanKeyboardNavigationSelectItems="True"
+					IsEditable="True"
+					IsReadOnly="True"
+					OpenDropDownOnFocus="True"
+					IsFilteringEnabled="True"
+					TextSearchMode="Contains"
+					IsDropDownOpen="False"
+					EmptyText="جستجو طرف حساب" 
+					UpdateSelectionOnLostFocus="True" Margin="5"/>
+        <Button Grid.Column="1" Margin="10" Height="20" Name="btnadd" Click="btnadd_Click">
+            افزودن کاربر به  لیست
+        </Button>
+        <telerik:RadGridView Grid.Row="1" Grid.ColumnSpan="2" AutoGenerateColumns="False" ShowSearchPanel="True" ShowGroupPanel="False" IsReadOnly="True" Name="grd">
+            <telerik:RadContextMenu.ContextMenu>
+                <telerik:RadContextMenu x:Name="GridContextMenu" ItemContainerStyle="{StaticResource MenuItemContainerStyle}" 
+                        Opened="GridContextMenu_Opened" ItemClick="GridContextMenu_ItemClick" />
+            </telerik:RadContextMenu.ContextMenu>
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding UserName}"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding FullName}" Width="*"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Email}"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding IsActive}"/>
+            </telerik:RadGridView.Columns>
+        </telerik:RadGridView>
+    </Grid>
+</telerik:RadWindow>

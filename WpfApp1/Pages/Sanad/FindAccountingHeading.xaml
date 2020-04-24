@@ -1,0 +1,16 @@
+﻿<telerik:RadWindow x:Class="WpfApp1.Pages.Sanad.FindAccountingHeading"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        Header="جستجو" Height="300" Width="400"
+         FlowDirection="RightToLeft" FontFamily="/WpfApp1;component/Content/Fonts/#IRANSans"  ResizeMode="NoResize" WindowStartupLocation="CenterOwner"    >
+    <Grid>
+        <telerik:RadGridView x:Name="grdsearch" MouseDoubleClick="grdsearch_MouseDoubleClick" AutoGenerateColumns="False" ShowSearchPanel="True" ShowGroupPanel="False" KeyDown="grdsearch_KeyDown">
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding id}" Width="Auto"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Title}" Width="Auto"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Discription}" Width="*"/>
+            </telerik:RadGridView.Columns>
+        </telerik:RadGridView>
+    </Grid>
+</telerik:RadWindow>
