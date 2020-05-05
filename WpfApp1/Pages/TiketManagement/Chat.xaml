@@ -1,0 +1,14 @@
+﻿<telerik:RadWindow x:Class="Doormat.Pages.TiketManagement.Chat"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        Header="مکالمات" Height="650" Width="600" FlowDirection="RightToLeft" FontFamily="/WpfApp1;component/Content/Fonts/#IRANSans"
+         WindowStartupLocation="CenterOwner" ResizeMode="NoResize"
+                >
+    <Grid>
+        <telerik:RadChat x:Name="chat" SendMessage="RadChat_SendMessage" ReportMessageResult="chat_ReportMessageResult">
+
+
+        </telerik:RadChat>
+    </Grid>
+</telerik:RadWindow>

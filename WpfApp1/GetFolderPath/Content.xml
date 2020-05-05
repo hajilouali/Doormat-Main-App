@@ -1,3 +1,4 @@
 ﻿<Root>
-  <serverApi>https://localhost:5001</serverApi>
+  <serverApi>http://192.168.1.31:8585/</serverApi>
+  <selecttiketid></selecttiketid>
 </Root>

@@ -1,5 +1,6 @@
 ﻿using DataLayer;
 using DataLayer.Api.Response;
+using Doormat.Pages.TiketManagement;
 using DoormatSite.Tools;
 using MD.PersianDateTime;
 using PhoenixFutureApiSdk;
@@ -667,6 +668,18 @@ namespace WpfApp1
         private void btnfactormror_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void btnTiketsmanagment_Click(object sender, RoutedEventArgs e)
+        {
+            MainTikets mainTikets = new MainTikets(token);
+            mainTikets.Owner = this;
+            mainTikets.Show();
+        }
+
+        private void btnTiketsoverview_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

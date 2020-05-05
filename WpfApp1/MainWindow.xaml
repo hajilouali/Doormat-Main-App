@@ -134,6 +134,21 @@
                         </Button>
 
                     </ToolBar>
+                    <ToolBar Band="0" BandIndex="0" x:Name="Tikets">
+                        <Button x:Name="btnTiketsmanagment"  Click="btnTiketsmanagment_Click">
+                            <StackPanel >
+                                <Image Source="Content/Icons/my-tickets-icon.png" Width="50"/>
+                                <Label  HorizontalAlignment="Center">مدیریت تیکت ها</Label>
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="btnTiketsoverview"  Click="btnTiketsoverview_Click">
+                            <StackPanel >
+                                <Image Source="Content/Icons/my-tickets-icon.png" Width="50"/>
+                                <Label  HorizontalAlignment="Center">مرور تیکت ها</Label>
+                            </StackPanel>
+                        </Button>
+
+                    </ToolBar>
                     <ToolBar Band="0" BandIndex="0" x:Name="toolbarmanufactore">
                         <Button x:Name="btnmanufacturee"  Click="btnManufacture_Click">
                             <StackPanel >

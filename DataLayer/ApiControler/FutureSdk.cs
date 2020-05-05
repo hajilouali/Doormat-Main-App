@@ -842,11 +842,29 @@ namespace PhoenixFutureApiSdk
                     StatusCode = ResponseStatus.LogicError
                 };
             }
-            catch
+            catch (Exception ex)
             {
                 return new ResponseModel<TokenResponse>
                 {
                     Message = "مشکل در ارتباط با سرور",
+                    StatusCode = ResponseStatus.LogicError
+                };
+            }
+        }
+        public async Task<ResponseModel<UserModel>> GetUserByID(int id ,string token)
+        {
+            try
+            {
+                _client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", token);
+
+                var response = _client.GetAsync(string.Format(_baseUrl, "api/v1/Users/"+id)).Result;
+                return await ResponseHandler<UserModel>(response);
+
+            }
+            catch
+            {
+                return new ResponseModel<UserModel>
+                {
                     StatusCode = ResponseStatus.LogicError
                 };
             }
@@ -1166,6 +1184,117 @@ namespace PhoenixFutureApiSdk
             }
         }
         #endregion
+        #region ManageTikets
+        public async Task<ResponseModel<List<TiketDto>>> GetTiketsBtyPageid(string token,gettiketbydate dto)
+        {
+            try
+            {
+                _client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", token);
+                StringContent stringContent = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(dto), Encoding.UTF8, "application/json");
+
+                var response = _client.PostAsync(string.Format(_baseUrl, "api/v1/ManageTikets/GetTiketListbydate"), stringContent).Result;
+                return await ResponseHandler<List<TiketDto>>(response);
+
+            }
+            catch
+            {
+                return new ResponseModel<List<TiketDto>>
+                {
+                    StatusCode = ResponseStatus.LogicError
+                };
+            }
+        }
+        public async Task<ResponseModel<List<TiketDto>>> GetTikets(string token)
+        {
+            try
+            {
+                _client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", token);
+
+                var response = _client.GetAsync(string.Format(_baseUrl, "api/v1/ManageTikets/GetTiketList")).Result;
+                return await ResponseHandler<List<TiketDto>>(response);
+
+            }
+            catch
+            {
+                return new ResponseModel<List<TiketDto>>
+                {
+                    StatusCode = ResponseStatus.LogicError
+                };
+            }
+        }
+        public async Task<ResponseModel<List<TiketDto>>> AddTiketContent(int tiketid,AddTiketContnt dto,string token)
+        {
+            try
+            {
+                _client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", token);
+                StringContent stringContent = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(dto), Encoding.UTF8, "application/json");
+
+                var response = _client.PostAsync(string.Format(_baseUrl, "api/v1/ManageTikets/AddTiketContent/"+ tiketid), stringContent).Result;
+                return await ResponseHandler<List<TiketDto>>(response);
+
+            }
+            catch
+            {
+                return new ResponseModel<List<TiketDto>>
+                {
+                    StatusCode = ResponseStatus.LogicError
+                };
+            }
+        }
+        public async Task<ResponseModel<TiketContentDto>> AddTiketAttachment(string token, int tiketid, IFormFile dto, string filepath)
+        {
+
+
+            try
+            {
+                _client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", token);
+
+                var documentToSend = System.IO.File.ReadAllBytes(filepath);
+                using (var multipartFormDataContent = new MultipartFormDataContent())
+                {
+                    multipartFormDataContent.Add(new ByteArrayContent(documentToSend)
+                    {
+                        Headers =
+                    {
+                        ContentLength = dto.Length,
+                        ContentType = new MediaTypeHeaderValue(dto.ContentType)
+                    },
+                    },
+                      "file",
+                      '"' + dto.FileName + '"');
+                    var response = _client.PostAsync(string.Format(_baseUrl, "api/v1/ManageTikets/AddTiketContentAttachment/" + tiketid), multipartFormDataContent).Result;
+                    return await ResponseHandler<TiketContentDto>(response);
+
+                }
+            }
+            catch
+            {
+                return new ResponseModel<TiketContentDto>
+                {
+                    StatusCode = ResponseStatus.LogicError
+                };
+            }
+        }
+        public async Task<ResponseModel<TiketDto>> GetTiketContent(int tiketid,  string token)
+        {
+            try
+            {
+                _client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("bearer", token);
+
+                var response = _client.GetAsync(string.Format(_baseUrl, "api/v1/ManageTikets/GetTiketContent/" + tiketid)).Result;
+                return await ResponseHandler<TiketDto>(response);
+
+            }
+            catch
+            {
+                return new ResponseModel<TiketDto>
+                {
+                    StatusCode = ResponseStatus.LogicError
+                };
+            }
+        }
+        #endregion
+
 
         private async Task<ResponseModel<T>> ResponseHandler<T>(HttpResponseMessage httpResponse)
         {

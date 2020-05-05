@@ -1,0 +1,41 @@
+﻿<telerik:RadWindow x:Class="Doormat.Pages.TiketManagement.MainTikets"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        Header="تیکت های باز" Height="600" Width="800" FlowDirection="RightToLeft" WindowStartupLocation="CenterOwner" FontFamily="/WpfApp1;component/Content/Fonts/#IRANSans" 
+        xmlns:local="cCl" 
+                   >
+   
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <WrapPanel Grid.Column="1" HorizontalAlignment="Right">
+                <CheckBox VerticalContentAlignment="Center" x:Name="EnableDate" IsChecked="True" FlowDirection="LeftToRight" Checked="EnableDate_Checked" Unchecked="EnableDate_Unchecked">فقط باز</CheckBox>
+                <Label>از تاریخ:</Label>
+                <telerik:RadDatePicker Name="txtstartAt" SelectionChanged="txtstartAt_SelectionChanged" IsEnabled="False"></telerik:RadDatePicker>
+                <Label>تا</Label>
+                <telerik:RadDatePicker Name="txtendAt" SelectionChanged="txtstartAt_SelectionChanged" IsEnabled="False"></telerik:RadDatePicker>
+            </WrapPanel>
+        </Grid>
+        <telerik:RadGridView Grid.Row="1" x:Name="grd" IsReadOnly="True" RowLoaded="grd_RowLoaded"  AutoGenerateColumns="False" SearchPanelCloseButtonVisibility="Hidden" ShowGroupPanel="False" MouseDoubleClick="grd_MouseDoubleClick" ShowSearchPanel="True">
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding id}" Width="auto" TextAlignment="Center" HeaderTextAlignment="Center" IsReadOnly="True"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding Title}" Width="*" TextAlignment="Center" HeaderTextAlignment="Center" IsReadOnly="True"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding user}" Width="auto" TextAlignment="Center" HeaderTextAlignment="Center" IsReadOnly="True"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding DepartmentString}" Width="auto" TextAlignment="Center" HeaderTextAlignment="Center" IsReadOnly="True"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding LevelString}" TextAlignment="Center" HeaderTextAlignment="Center" IsReadOnly="True"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding DataCreateString }" TextAlignment="Center" HeaderTextAlignment="Center" IsReadOnly="True"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding DataModifiedstring }" TextAlignment="Center" HeaderTextAlignment="Center" IsReadOnly="True"/>
+
+            </telerik:RadGridView.Columns>
+            
+        </telerik:RadGridView>
+    </Grid>
+</telerik:RadWindow>
