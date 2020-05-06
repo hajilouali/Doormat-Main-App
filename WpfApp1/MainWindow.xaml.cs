@@ -27,6 +27,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using Telerik.Windows.Controls;
 using Telerik.Windows.Controls.TaskBoard;
 using WpfApp1.Pages;
 using WpfApp1.Pages.Bank;
@@ -109,6 +110,13 @@ namespace WpfApp1
                             State = "فاکتور های در انتظار تایید",
                             CategoryName = "High"
                         });
+                        var alert = new RadDesktopAlert();
+                        alert.Header = string.Format("شماره فاکتور:" + item.id);
+                        alert.Content = item.User_Name;
+                        alert.ShowDuration = 3000;
+
+                        RadDesktopAlertManager manager = new RadDesktopAlertManager();
+                        manager.ShowAlert(alert);
                     }
                 }
                 rlblpendingfactorcount.Content = pendingfactor.Result.Data.Count;
@@ -175,6 +183,13 @@ namespace WpfApp1
                             State = "تیکت های در انتظار تایید",
                             CategoryName = "High"
                         });
+                        var alert = new RadDesktopAlert();
+                        alert.Header = item.Title;
+                        alert.Content =item.tiketContents.FirstOrDefault().tiketId;
+                        alert.ShowDuration = 3000;
+
+                        RadDesktopAlertManager manager = new RadDesktopAlertManager();
+                        manager.ShowAlert(alert);
                     }
                 }
                 rlbltiketcount.Content = tiketpending.Result.Data.Count;

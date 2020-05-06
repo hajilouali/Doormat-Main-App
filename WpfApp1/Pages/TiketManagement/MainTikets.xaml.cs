@@ -60,13 +60,7 @@ namespace Doormat.Pages.TiketManagement
             {
                 binddata();
             }, this.Dispatcher);
-            var alert = new RadDesktopAlert();
-            alert.Header = "MAIL NOTIFICATION";
-            alert.Content = "Hello, Here are two things that we noticed today on our daily meeting.";
-            alert.ShowDuration = 3000;
             
-            RadDesktopAlertManager manager = new RadDesktopAlertManager();
-            manager.ShowAlert(alert);
         }
 
         void binddata()
