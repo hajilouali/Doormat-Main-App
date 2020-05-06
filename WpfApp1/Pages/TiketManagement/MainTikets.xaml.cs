@@ -6,6 +6,7 @@ using PersianDate;
 using PhoenixFutureApiSdk;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
@@ -29,6 +30,15 @@ namespace Doormat.Pages.TiketManagement
     /// <summary>
     /// Interaction logic for MainTikets.xaml
     /// </summary>
+    /// 
+    //public class TaskBoardCardModel
+    //{
+    //    public string Assignee { get; set; }
+    //    public string Description { get; set; }
+    //    public string State { get; set; }
+    //    public string Title { get; set; }
+    //    public string CategoryName { get; set; }
+    //}
     public partial class MainTikets
     {
         private string _token { get; set; }
@@ -37,7 +47,8 @@ namespace Doormat.Pages.TiketManagement
         {
             _token = token;
             InitializeComponent();
-            binddata();
+           
+
             this.txtendAt.Culture = new System.Globalization.CultureInfo("fa");
             this.txtendAt.Culture.DateTimeFormat.ShortDatePattern = "yyyy/MM/dd";
             this.txtendAt.SelectedDate = DateTime.Now;
@@ -45,6 +56,17 @@ namespace Doormat.Pages.TiketManagement
             this.txtstartAt.Culture.DateTimeFormat.ShortDatePattern = "yyyy/MM/dd";
             PersianCalendar pc = new PersianCalendar();
             this.txtstartAt.SelectedDate = new DateTime(pc.GetYear(DateTime.Now), pc.GetMonth(DateTime.Now), 01, pc);
+            DispatcherTimer timer = new DispatcherTimer(new TimeSpan(0, 0, 59), DispatcherPriority.Normal, delegate
+            {
+                binddata();
+            }, this.Dispatcher);
+            var alert = new RadDesktopAlert();
+            alert.Header = "MAIL NOTIFICATION";
+            alert.Content = "Hello, Here are two things that we noticed today on our daily meeting.";
+            alert.ShowDuration = 3000;
+            
+            RadDesktopAlertManager manager = new RadDesktopAlertManager();
+            manager.ShowAlert(alert);
         }
 
         void binddata()

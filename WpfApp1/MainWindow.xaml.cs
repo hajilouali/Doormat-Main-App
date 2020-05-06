@@ -1,12 +1,17 @@
-﻿using DataLayer;
+﻿using BindComboboxToEnum;
+using DataLayer;
+using DataLayer.Api.Request;
 using DataLayer.Api.Response;
 using Doormat.Pages.TiketManagement;
 using DoormatSite.Tools;
 using MD.PersianDateTime;
+using Moq;
+using PersianDate;
 using PhoenixFutureApiSdk;
 using Stimulsoft.Report;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -22,6 +27,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using Telerik.Windows.Controls.TaskBoard;
 using WpfApp1.Pages;
 using WpfApp1.Pages.Bank;
 using WpfApp1.Pages.Clients;
@@ -46,17 +52,176 @@ namespace WpfApp1
     {
         public string token;
         FutureSdk sdk = new FutureSdk(xml.loadline("serverApi"));
-        public MainWindow()
+        public MainWindow(string _token)
         {
+            token = _token;
             InitializeComponent();
+            var user = sdk.GetUserBio(token).Result;
             DispatcherTimer timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
             {
                 PersianDateTime persianDateTime = new PersianDateTime(DateTime.Now);
                 //this.LblStatus.Content = DateTime.Now.ToString("ddd, dd MMM yyy - HH':'mm':'ss ");
                 this.LblStatus.Content = persianDateTime.ToLongDateTimeString();
+                
             }, this.Dispatcher);
+            GetTasks();
+            DispatcherTimer timerr = new DispatcherTimer(new TimeSpan(0, 0, 60), DispatcherPriority.Normal, delegate
+            {
+                //this.LblStatus.Content = DateTime.Now.ToString("ddd, dd MMM yyy - HH':'mm':'ss ");
+                if (user.Data.RollName.Where(p => p.Contains("Admin") || p.Contains("Accountants")).Any())
+                {
+                    
+                }
+            }, this.Dispatcher);
+
+            #region MyRegion
+
+
+            #endregion
+
         }
 
+
+        public void GetTasks()
+        {
+            ObservableCollection<TaskBoardCardModel> tasks = new ObservableCollection<TaskBoardCardModel>();
+            var dto = new GetFactor()
+            {
+                ISAllType = false,
+                StartDate = "",
+                EndDate = "",
+                ClientID = 0,
+                FactorType = DataLayer.Api.Response.FactorType.PendingToAccept,
+            };
+            var pendingfactor = sdk.GetAllFactor(token, dto);
+            if (pendingfactor.IsCompleted)
+            {
+                if (pendingfactor.Result.Data.Any())
+                {
+                    foreach (var item in pendingfactor.Result.Data)
+                    {
+                        tasks.Add(
+                        new TaskBoardCardModel()
+                        {
+                            Assignee = item.User_Name,
+                            Title = string.Format("شماره فاکتور:" + item.id),
+                            Description = item.User_Name,
+                            State = "فاکتور های در انتظار تایید",
+                            CategoryName = "High"
+                        });
+                    }
+                }
+                rlblpendingfactorcount.Content = pendingfactor.Result.Data.Count;
+            }
+            var gss = new GetFactor()
+            {
+                ClientID = 0,
+                ISAllType = true,
+                FactorType = 0,
+                StartDate = DateTime.Now.ToFa(),
+                EndDate = DateTime.Now.ToFa()
+            };
+            var factors = sdk.GetAllFactor(token, gss);
+            if (factors.IsCompleted)
+            {
+                if (factors.Result.Data.Any())
+                {
+                    foreach (var item in factors.Result.Data.Where(p => p.FactorType == FactorType.PishFactor))
+                    {
+                        tasks.Add(
+                        new TaskBoardCardModel()
+                        {
+                            Assignee = item.User_Name,
+                            Title = string.Format("شماره فاکتور:" + item.id),
+                            Description = item.User_Name,
+                            State = "پیش فاکتور ها",
+                            CategoryName = "Medium"
+                        });
+                    }
+                    foreach (var item in factors.Result.Data.Where(p=>p.FactorType==FactorType.Factor))
+                    {
+                        tasks.Add(
+                        new TaskBoardCardModel()
+                        {
+                            Assignee = item.User_Name,
+                            Title = string.Format("شماره فاکتور:"+item.id),
+                            Description = item.User_Name,
+                            State = "فاکتور ها",
+                            CategoryName = "Low"
+                        });
+                    }
+                }
+                rlblfactorscount.Content = factors.Result.Data.Count();
+
+                rlblfactorcount.Content = factors.Result.Data.Where(p => p.FactorType == FactorType.Factor).Count();
+                rlblpishfactorcount.Content = factors.Result.Data.Where(p => p.FactorType == FactorType.PishFactor).Count();
+
+            }
+
+
+            var tiketpending  = sdk.GetTikets(token);            
+            if (tiketpending.IsCompleted)
+            {
+                if (tiketpending.Result.Data.Any())
+                {
+                    foreach (var item in tiketpending.Result.Data)
+                    {
+                        tasks.Add(
+                        new TaskBoardCardModel()
+                        {
+                            Assignee = item.user,
+                            Title = item.user,
+                            Description = item.Title,
+                            State = "تیکت های در انتظار تایید",
+                            CategoryName = "High"
+                        });
+                    }
+                }
+                rlbltiketcount.Content = tiketpending.Result.Data.Count;
+            }
+            var bazdid = sdk.GetExperts(token);
+            if (bazdid.IsCompleted)
+            {
+                if (bazdid.Result.Data.Any())
+                {
+                    foreach (var item in bazdid.Result.Data)
+                    {
+                        tasks.Add(
+                        new TaskBoardCardModel()
+                        {
+                            Assignee = item.ClientName,
+                            Title = item.ClientName,
+                            Description = item.Clientaddress,
+                            State = "در انتظار بازدید",
+                            CategoryName = "Medium"
+                        });
+                    }
+                }
+                rlblexpertcount.Content = bazdid.Result.Data.Count;
+            }
+            var manufactures = sdk.GetGetManufacture(token);
+            if (manufactures.IsCompleted)
+            {
+                if (manufactures.Result.Data.Any())
+                {
+                    foreach (var item in manufactures.Result.Data)
+                    {
+                        tasks.Add(
+                       new TaskBoardCardModel()
+                       {
+                           Assignee = item.FactorClientName,
+                           Title = string.Format("شماره فاکتور :"+ item.Factor_ID),
+                           Description = string.Format("آخرین وضعیت :"+ item.ConditionManufactureTitle),
+                           State = "سفارشات در تولید",
+                           CategoryName = "Low"
+                       });
+                    }
+                }
+                rlblmanufaccount.Content=manufactures.Result.Data.Count;
+            }
+            taskBoard.ItemsSource = tasks;
+            
+        }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             DataApi d = new DataApi();
@@ -86,6 +251,11 @@ namespace WpfApp1
             menureports.Visibility = Visibility.Collapsed;
             menumanufactore.Visibility = Visibility.Collapsed;
             settingmenu.Visibility = Visibility.Collapsed;
+            eventsss.Visibility = Visibility.Collapsed;
+            taskBoard.Visibility = Visibility.Collapsed;
+            Tikets.Visibility = Visibility.Collapsed;
+
+
             if (user.Data.RollName.Where(p => p.Equals("Admin")).Any())
             {
                 toolbaraccounting.Visibility = Visibility.Visible;
@@ -97,6 +267,10 @@ namespace WpfApp1
                 menureports.Visibility = Visibility.Visible;
                 menumanufactore.Visibility = Visibility.Visible;
                 settingmenu.Visibility = Visibility.Visible;
+                eventsss.Visibility = Visibility.Visible;
+                taskBoard.Visibility = Visibility.Visible;
+                Tikets.Visibility = Visibility.Visible;
+
             }
             if (user.Data.RollName.Where(p => p.Equals("Accountants")).Any())
             {
@@ -108,11 +282,16 @@ namespace WpfApp1
                 expertmenu.Visibility = Visibility.Visible;
                 menureports.Visibility = Visibility.Visible;
                 menumanufactore.Visibility = Visibility.Visible;
+                eventsss.Visibility = Visibility.Visible;
+                taskBoard.Visibility = Visibility.Visible;
+                Tikets.Visibility = Visibility.Visible;
+
             }
             if (user.Data.RollName.Where(p => p.Equals("Manufacturers")).Any())
             {
                 menumanufactore.Visibility = Visibility.Visible;
                 toolbarmanufactore.Visibility = Visibility.Visible;
+                Tikets.Visibility = Visibility.Visible;
 
 
             }
@@ -679,7 +858,7 @@ namespace WpfApp1
 
         private void btnTiketsoverview_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
     }
 }

@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
-        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" x:Class="WpfApp1.MainWindow"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:taskBoard="clr-namespace:Telerik.Windows.Controls.TaskBoard;assembly=Telerik.Windows.Controls" x:Class="WpfApp1.MainWindow"
         mc:Ignorable="d" Loaded="Window_Loaded"
         Title="درمت" FlowDirection="RightToLeft" WindowStartupLocation="CenterScreen" WindowState="Maximized" FontFamily="/WpfApp1;component/Content/Fonts/#IRANSans">
     <DockPanel>
@@ -141,12 +141,7 @@
                                 <Label  HorizontalAlignment="Center">مدیریت تیکت ها</Label>
                             </StackPanel>
                         </Button>
-                        <Button x:Name="btnTiketsoverview"  Click="btnTiketsoverview_Click">
-                            <StackPanel >
-                                <Image Source="Content/Icons/my-tickets-icon.png" Width="50"/>
-                                <Label  HorizontalAlignment="Center">مرور تیکت ها</Label>
-                            </StackPanel>
-                        </Button>
+                        
 
                     </ToolBar>
                     <ToolBar Band="0" BandIndex="0" x:Name="toolbarmanufactore">
@@ -206,6 +201,111 @@
             </StatusBarItem>
 
         </StatusBar>
-        <Grid Background="#FFC8BCAB"></Grid>
+        <Grid Background="#FFC8BCAB">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <telerik:GroupBox Margin="5" Header="رویداد ها" Grid.ColumnSpan="2" Name="eventsss">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal" Margin="0 30 0 30">
+                        <Border Background="#FD28FC"  BorderThickness="1,1,1,1" CornerRadius="30,30,30,30" Padding="10" Width="200px" Margin="0 0 0 0">
+                            <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Label FontSize="15">تعداد فاکتور های روز :</Label>
+                                <Label FontSize="15" Grid.Column="1" Name="rlblfactorscount" ></Label>
+                            </Grid>
+                        </Border>
+                        <Border Background="#903EFC"  BorderThickness="1,1,1,1" CornerRadius="30,30,30,30" Padding="0 0 0 0" Width="200px" Margin="15 0 0 0">
+                            <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Label FontSize="14">فاکتور های در انتظار تایید :</Label>
+                                <Label FontSize="14" Grid.Column="1" Name="rlblpendingfactorcount"></Label>
+                            </Grid>
+                        </Border>
+                        <Border Background="#0B24FA"  BorderThickness="1,1,1,1" CornerRadius="30,30,30,30" Padding="10" Width="200px" Margin="17 0 0 0">
+                            <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Label FontSize="15">پیش فاکتور ها :</Label>
+                                <Label FontSize="15" Grid.Column="1" Name="rlblpishfactorcount"></Label>
+                            </Grid>
+                        </Border>
+                        <Border Background="#7FF9FA"  BorderThickness="1,1,1,1" CornerRadius="30,30,30,30" Padding="10" Width="200px" Margin="17 0 0 0">
+                            <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Label FontSize="15">فاکتور ها :</Label>
+                                <Label FontSize="15" Grid.Column="1" Name="rlblfactorcount"></Label>
+                            </Grid>
+                        </Border>
+                        <Border Background="#2CFDAA"  BorderThickness="1,1,1,1" CornerRadius="30,30,30,30" Padding="10" Width="200px" Margin="17 0 0 0">
+                            <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Label FontSize="15">تیکت های باز :</Label>
+                                <Label FontSize="15" Grid.Column="1" Name="rlbltiketcount"></Label>
+                            </Grid>
+                        </Border>
+                        <Border Background="#29FD2F"  BorderThickness="1,1,1,1" CornerRadius="30,30,30,30" Padding="10" Width="200px" Margin="17 0 0 0">
+                            <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Label FontSize="15">در انتظار بازدید :</Label>
+                                <Label FontSize="15" Grid.Column="1" Name="rlblexpertcount"></Label>
+                            </Grid>
+                        </Border>
+                        <Border Background="#FFFD38"  BorderThickness="1,1,1,1" CornerRadius="30,30,30,30" Padding="10" Width="200px" Margin="17 0 0 0">
+                            <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Label FontSize="15">سفارش در تولید:</Label>
+                                <Label FontSize="15" Grid.Column="1" Name="rlblmanufaccount"></Label>
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+                    
+                </Grid>
+                
+                
+            </telerik:GroupBox  >
+            <telerik:RadTaskBoard Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="3" x:Name="taskBoard" GroupMemberPath="State">
+                <telerik:RadTaskBoard.Categories>
+                    <taskBoard:CategoryCollection>
+                        <taskBoard:CategoryModel CategoryName="Low" CategoryBrush="Green"/>
+                        <taskBoard:CategoryModel CategoryName="Medium" CategoryBrush="Yellow"/>
+                        <taskBoard:CategoryModel CategoryName="High" CategoryBrush="Red"/>
+                    </taskBoard:CategoryCollection>
+                </telerik:RadTaskBoard.Categories>
+            </telerik:RadTaskBoard>
+
+
+        </Grid>
     </DockPanel>
 </Window>

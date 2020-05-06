@@ -39,9 +39,9 @@ namespace WpfApp1
             var respons = sdk.GetToken(tokenpost);
             if (respons.Result.IsSuccess)
             {
-                MainWindow mainWindow = new MainWindow();
+                MainWindow mainWindow = new MainWindow(respons.Result.Data.access_token);
                 this.Close();
-                mainWindow.token = respons.Result.Data.access_token;
+                
                 mainWindow.Show();
             }
             else
